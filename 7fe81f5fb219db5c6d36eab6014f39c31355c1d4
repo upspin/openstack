@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a126d28_da7fc7d6",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-19T18:08:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f29d1bc9_332f429c",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c53536c4_1dfe7ced",
         "filename": "cloud/storage/openstack/openstack.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c31f55_a667a877",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-19T18:08:06Z",
+      "side": 1,
+      "message": "I\u0027m not sure why I used env vars in the first place. Having credentials in the systemd unit file or in the json config doesn\u0027t seem much different...\n\nNote though, that the server will now log the credentials during start-up, since they are now part of the options. (This does not only affect this flavour of the server, it would log the API key for the backblaze version, I think.)\n\n(I\u0027m now running the updated version.)",
+      "parentUuid": "c53536c4_1dfe7ced",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
     }
   ]
 }
