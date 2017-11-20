@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd0a84f6_d1a74096",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-11-20T03:10:21Z",
+      "side": 1,
+      "message": "this needn\u0027t be a var block, it can just be\n\nvar requriedOpts \u003d ...",
+      "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31c1c768_dfaa5b0a",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-11-20T03:10:21Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78d9e88f_71d9a914",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-11-20T03:10:21Z",
+      "side": 1,
+      "message": "Internal, I think",
+      "range": {
+        "startLine": 120,
+        "startChar": 33,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    }
+  ]
+}

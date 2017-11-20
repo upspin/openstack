@@ -69,6 +69,24 @@
       "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbc23149_b6a79845",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-11-20T03:10:21Z",
+      "side": 1,
+      "message": "To fix the logging of credentials, you should update fmtStoreConfig in the upspinserver package:\n\nhttps://github.com/upspin/upspin/blob/master/serverutil/upspinserver/main.go#L174\n\nI think we need to update this for aws et al, too.",
+      "parentUuid": "f8c31f55_a667a877",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
     }
   ]
 }
