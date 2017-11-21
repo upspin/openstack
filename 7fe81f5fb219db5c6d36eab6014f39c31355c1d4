@@ -87,6 +87,24 @@
       "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87bab609_3ea5d2bb",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-21T08:28:30Z",
+      "side": 1,
+      "message": "Rather than add many prefixes to `fmtStoreConfig` I wish we could extend the filter to matching something like `^private[^\u003d]*\u003d` and change options keys in existing storage backends... also, should we log those as e.g. \"privateKey\u003d(hidden)\" so at least it\u0027s one can see that some value was specified? Doing so would break whoever\u0027s using non-AWS non-GCP servers because of the named options changes, at this point this could be only whoever developed those so could be acceptable? (AWS has no credentials in the config as those are in the EC2 instance IAM role I think.)\n\nIt feels wrong to tie `fmtStoreConfig` with all server impl\u0027s.\n\nPlease do not merge this CL until we agree on the naming and approach, so I put the right names...",
+      "parentUuid": "cbc23149_b6a79845",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
     }
   ]
 }

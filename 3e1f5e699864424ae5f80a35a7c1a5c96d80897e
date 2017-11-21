@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "98ab9cd6_722574e3",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-21T08:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd0a84f6_d1a74096",
+      "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31c1c768_dfaa5b0a",
         "filename": "cloud/storage/openstack/openstack.go",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fa2c88b_2e79ec9c",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-21T08:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31c1c768_dfaa5b0a",
+      "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
     },
     {
       "key": {
@@ -56,6 +92,30 @@
       "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84f54b36_9ae9e187",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-21T08:28:30Z",
+      "side": 1,
+      "message": "I agree",
+      "parentUuid": "78d9e88f_71d9a914",
+      "range": {
+        "startLine": 120,
+        "startChar": 33,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "3e1f5e699864424ae5f80a35a7c1a5c96d80897e",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
     }
   ]
 }
