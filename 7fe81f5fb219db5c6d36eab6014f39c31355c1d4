@@ -105,6 +105,24 @@
       "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f4b5e9f_ffb2e3fd",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-11-22T01:40:43Z",
+      "side": 1,
+      "message": "We can\u0027t easily change the other names, because that would invalidate existing configurations. It\u0027s ugly, but creating a list of keys (or key substrings) that are forbidden from logging is sufficient IMO.",
+      "parentUuid": "87bab609_3ea5d2bb",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
     }
   ]
 }
