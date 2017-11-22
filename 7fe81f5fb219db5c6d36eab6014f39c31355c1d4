@@ -141,6 +141,24 @@
       "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b7ae844_269aba52",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-11-22T22:40:38Z",
+      "side": 1,
+      "message": "\u003e (I could follow up with the fmtStoreConfig change.)\n\nPlease do.",
+      "parentUuid": "b043317c_f3306660",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": false
     }
   ]
 }
