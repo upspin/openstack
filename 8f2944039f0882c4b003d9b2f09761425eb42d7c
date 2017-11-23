@@ -16,6 +16,24 @@
       "revId": "8f2944039f0882c4b003d9b2f09761425eb42d7c",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01a0df06_c045d8c1",
+        "filename": "cloud/storage/openstack/openstack_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-23T00:32:17Z",
+      "side": 1,
+      "message": "Sorry to have you type in the same comment twice, but in my defence:\n\n$ for d in dropbox.upspin.io aws.upspin.io b2.upspin.io gcp.upspin.io; do find $d -type f -name \\*_test.go  -exec head -1 {} \\; ; done\n// Copyright 2016 The Upspin Authors. All rights reserved.\npackage s3\npackage b2cs\n// Copyright 2016 The Upspin Authors. All rights reserved.\n// Copyright 2016 The Upspin Authors. All rights reserved.\n\nI\u0027d only looked at b2 and aws... I deduced the convention did not apply to test files.",
+      "parentUuid": "95e0f458_a64b4ce4",
+      "revId": "8f2944039f0882c4b003d9b2f09761425eb42d7c",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
     }
   ]
 }
