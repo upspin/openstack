@@ -159,6 +159,24 @@
       "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32506c7e_1c0f770c",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-11-23T00:32:17Z",
+      "side": 1,
+      "message": "I took a stab at it in CL 16580... and add private to what I want to hide here. Sorry for dragging this change on and on. Option names are very verbose, I guess I could remove \"openstack\" from them if you like, as that should be implied by \"backend\u003dOpenStack\".",
+      "parentUuid": "7b7ae844_269aba52",
+      "revId": "7fe81f5fb219db5c6d36eab6014f39c31355c1d4",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
     }
   ]
 }
