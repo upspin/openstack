@@ -51,7 +51,7 @@ type openstackStorage struct {
 // New creates a new instance of the OpenStack implementation of
 // storage.Storage.
 func New(opts *storage.Opts) (storage.Storage, error) {
-	const op = "cloud/storage/openstack.New"
+	const op errors.Op = "cloud/storage/openstack.New"
 
 	for _, opt := range requiredOpts {
 		if _, ok := opts.Opts[opt]; !ok {
@@ -108,7 +108,7 @@ var _ storage.Storage = (*openstackStorage)(nil)
 // and an unsupported error in case it does not. Still, it might return an
 // error because it can't get the necessary metadata.
 func (s *openstackStorage) LinkBase() (string, error) {
-	const op = "cloud/storage/openstack.LinkBase"
+	const op errors.Op = "cloud/storage/openstack.LinkBase"
 
 	r := containers.Get(s.client, s.container)
 	h, err := r.Extract()
@@ -125,7 +125,7 @@ func (s *openstackStorage) LinkBase() (string, error) {
 }
 
 func (s *openstackStorage) Download(ref string) ([]byte, error) {
-	const op = "cloud/storage/openstack.Download"
+	const op errors.Op = "cloud/storage/openstack.Download"
 
 	r := objects.Download(s.client, s.container, ref, nil)
 	contents, err := r.ExtractContent()
@@ -140,7 +140,7 @@ func (s *openstackStorage) Download(ref string) ([]byte, error) {
 }
 
 func (s *openstackStorage) Put(ref string, contents []byte) error {
-	const op = "cloud/storage/openstack.Put"
+	const op errors.Op = "cloud/storage/openstack.Put"
 
 	opts := objects.CreateOpts{Content: bytes.NewReader(contents)}
 	err := objects.Create(s.client, s.container, ref, opts).Err
@@ -152,7 +152,7 @@ func (s *openstackStorage) Put(ref string, contents []byte) error {
 }
 
 func (s *openstackStorage) Delete(ref string) error {
-	const op = "cloud/storage/openstack.Delete"
+	const op errors.Op = "cloud/storage/openstack.Delete"
 
 	err := objects.Delete(s.client, s.container, ref, nil).Err
 	if err != nil {
