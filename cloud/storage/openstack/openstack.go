@@ -13,7 +13,7 @@ import (
 	"github.com/gophercloud/gophercloud/openstack"
 	"github.com/gophercloud/gophercloud/openstack/objectstorage/v1/containers"
 	"github.com/gophercloud/gophercloud/openstack/objectstorage/v1/objects"
-
+	"github.com/gophercloud/gophercloud/pagination"
 	"upspin.io/cloud/storage"
 	"upspin.io/errors"
 	"upspin.io/upspin"
@@ -102,7 +102,10 @@ func init() {
 	}
 }
 
-var _ storage.Storage = (*openstackStorage)(nil)
+var (
+	_ storage.Storage = (*openstackStorage)(nil)
+	_ storage.Lister  = (*openstackStorage)(nil)
+)
 
 // LinkBase will return the URL if the container has read access for everybody
 // and an unsupported error in case it does not. Still, it might return an
@@ -160,4 +163,68 @@ func (s *openstackStorage) Delete(ref string) error {
 			"Unable to delete ref %q from container %q: %s", ref, s.container, err))
 	}
 	return nil
+}
+
+func (s *openstackStorage) getPager(url string, perPage int) pagination.Pager {
+	// First page, can use objects.List().
+	if url == "" {
+		return objects.List(s.client, s.container, objects.ListOpts{
+			Full:  true,
+			Limit: perPage,
+		})
+	}
+	// Continuation page, need custom pager. Page creator function stolen
+	// from objects.List().
+	return pagination.NewPager(s.client, url, func(r pagination.PageResult) pagination.Page {
+		p := objects.ObjectPage{
+			MarkerPageBase: pagination.MarkerPageBase{PageResult: r},
+		}
+		p.MarkerPageBase.Owner = p
+		return p
+	})
+}
+
+func (s *openstackStorage) list(url string, perPage int) ([]upspin.ListRefsItem, string, error) {
+	const op = "cloud/storage/openstack.List"
+
+	pager := s.getPager(url, perPage)
+
+	var refs []upspin.ListRefsItem
+	var nextToken string
+	var pageErr error
+	err := pager.EachPage(func(page pagination.Page) (bool, error) {
+		os, err := objects.ExtractInfo(page)
+		if err != nil {
+			pageErr = errors.E(op, errors.IO, errors.Errorf("Unable to extract info from page of container %q: %s", s.container, err))
+			return false, err
+		}
+		for _, o := range os {
+			refs = append(refs, upspin.ListRefsItem{
+				Ref:  upspin.Reference(o.Name),
+				Size: o.Bytes,
+			})
+		}
+		token, err := page.NextPageURL()
+		if err != nil {
+			pageErr = errors.E(op, errors.IO, errors.Errorf("Unable to get next  page URL for container %q: %s", s.container, err))
+			return false, err
+		}
+		nextToken = token
+
+		// Stop pagination after the first page. Let the Upspin client
+		// do the pagination.  If we called pager.AllPages() we'd have
+		// to wait until all pagination is done and the client would
+		// probably give up waiting for a response.
+		return false, nil
+	})
+	if err != nil {
+		return nil, "", errors.E(op, errors.IO, errors.Errorf("Unable to list pages from container %q: %s", s.container, err))
+	}
+	return refs, nextToken, pageErr
+}
+
+// List implements storage.Lister. In this implementation, the token is in fact
+// the URL for the next page.
+func (s *openstackStorage) List(token string) ([]upspin.ListRefsItem, string, error) {
+	return s.list(token, 0)
 }

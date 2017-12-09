@@ -13,7 +13,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/gophercloud/gophercloud/openstack"
 	"github.com/gophercloud/gophercloud/openstack/objectstorage/v1/containers"
+	"upspin.io/upspin"
 
 	"upspin.io/cloud/storage"
 	"upspin.io/errors"
@@ -21,7 +23,7 @@ import (
 )
 
 const (
-	defaultTestRegion    = "BHS3"
+	defaultTestRegion    = "WAW1"
 	defaultTestContainer = "upspin-test-container"
 )
 
@@ -101,6 +103,65 @@ func TestPutAndDelete(t *testing.T) {
 	}
 }
 
+func TestListingEmptyContainer(t *testing.T) {
+	l := client.(*openstackStorage)
+	refs, nextToken, err := l.List("")
+	if err != nil {
+		t.Fatalf("cloud/storage/openstack: could not list: %v", err)
+	}
+	if len(refs) != 0 || nextToken != "" {
+		t.Fatalf("cloud/storage/openstack: wanted 0 refs, got %d; wanted empty token, got %q", len(refs), nextToken)
+	}
+}
+
+func TestListingWithPagination(t *testing.T) {
+	putRefs := make([]string, 10)
+	for i := 0; i < 10; i++ {
+		ref := fmt.Sprintf("ref%d", i)
+		putRefs[i] = ref
+		if err := client.Put(ref, objectContents); err != nil {
+			t.Fatalf("cloud/storage/openstack: could not put %q which is required for test setup", ref)
+		}
+	}
+
+	// Ensure we (try to) clean up so the container can be deleted.
+	defer func() {
+		for _, n := range putRefs {
+			client.Delete(n)
+		}
+	}()
+
+	refs, callCount, err := getAllRefs(3, len(putRefs))
+	if err != nil {
+		t.Fatalf("cloud/storage/openstack: could not paginate through the list")
+	}
+	if len(refs) != len(putRefs) {
+		t.Errorf("cloud/storage/openstack: want %d, got %d objects", len(putRefs), len(refs))
+	}
+	if wanted := 4; callCount != wanted {
+		t.Errorf("cloud/storage/openstack: want %d, got %d pages", wanted, callCount)
+	}
+}
+
+func getAllRefs(perPage int, maxCalls int) ([]upspin.ListRefsItem, int, error) {
+	l := client.(*openstackStorage)
+	var allRefs, refs []upspin.ListRefsItem
+	var token string
+	var callCount int
+	var err error
+	for ; callCount < maxCalls; callCount++ {
+		refs, token, err = l.list(token, perPage)
+		if err != nil {
+			break
+		}
+		allRefs = append(allRefs, refs...)
+		if token == "" {
+			break
+		}
+	}
+	return allRefs, callCount, err
+}
+
 func TestMain(m *testing.M) {
 	flag.Parse()
 	if !*useOpenStack {
@@ -117,10 +178,20 @@ container named by flag -test_container and then set this test's flag
 
 	// Create client that writes to test container.
 	var err error
+	// It is easier to source an openrc file than pass all via command-line
+	// flags.
+	ao, err := openstack.AuthOptionsFromEnv()
+	if err != nil {
+		log.Fatalf("cloud/storage/openstack: could not get auth opts from env: %v", err)
+	}
 	client, err = storage.Dial(
 		"OpenStack",
 		storage.WithKeyValue("openstackRegion", *testRegion),
 		storage.WithKeyValue("openstackContainer", *testContainer),
+		storage.WithKeyValue("openstackAuthURL", ao.IdentityEndpoint),
+		storage.WithKeyValue("privateOpenstackTenantName", ao.TenantName),
+		storage.WithKeyValue("privateOpenstackUsername", ao.Username),
+		storage.WithKeyValue("privateOpenstackPassword", ao.Password),
 	)
 	if err != nil {
 		log.Fatalf("cloud/storage/openstack: couldn't set up client: %v", err)
