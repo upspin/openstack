@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ea6425a_7ad42c44",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-12-13T23:07:25Z",
+      "side": 1,
+      "message": "do this wrapping outside the EachPage function. Also the \"Unable to ...\" is probably unnecessary. I\u0027d hope the error from ExtractInfo and NextPageURL would provide sufficient context here.\n\nif err !\u003d nil {\n  err \u003d errors.E(op, errors.IO, errors.Errorf(\"%q: %v\", s.container, err))\n}",
+      "range": {
+        "startLine": 195,
+        "startChar": 16,
+        "endLine": 195,
+        "endChar": 41
+      },
+      "revId": "e6f6e5102e7207e54041e97fbb4d06a8634a258c",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23cd33af_72638f2a",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 5389
+      },
+      "writtenOn": "2017-12-13T23:07:25Z",
+      "side": 1,
+      "message": "limit 0 means maximum?",
+      "range": {
+        "startLine": 222,
+        "startChar": 22,
+        "endLine": 222,
+        "endChar": 24
+      },
+      "revId": "e6f6e5102e7207e54041e97fbb4d06a8634a258c",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    }
+  ]
+}
