@@ -111,6 +111,30 @@
     },
     {
       "key": {
+        "uuid": "74335397_71f9883d",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-12-13T08:57:02Z",
+      "side": 1,
+      "message": "Thanks - I totally missed that the the error returned by the handler func passed to EachPage would be returned by EachPage itself.",
+      "parentUuid": "4d987f32_bfc01657",
+      "range": {
+        "startLine": 198,
+        "startChar": 3,
+        "endLine": 198,
+        "endChar": 10
+      },
+      "revId": "254d7ae26c8ec1a82194df3c8584dcad0e0c26d1",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2d5f9a79_e5ac2b96",
         "filename": "cloud/storage/openstack/openstack.go",
         "patchSetId": 1
@@ -231,6 +255,30 @@
       "writtenOn": "2017-12-11T21:18:57Z",
       "side": 1,
       "message": "ref. be consistent.",
+      "range": {
+        "startLine": 129,
+        "startChar": 9,
+        "endLine": 129,
+        "endChar": 10
+      },
+      "revId": "254d7ae26c8ec1a82194df3c8584dcad0e0c26d1",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "280502c4_2f3cf071",
+        "filename": "cloud/storage/openstack/openstack_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-12-13T08:57:02Z",
+      "side": 1,
+      "message": "Thanks, putRefs used to be called object names :)",
+      "parentUuid": "f1a82c50_ebb82ea6",
       "range": {
         "startLine": 129,
         "startChar": 9,
