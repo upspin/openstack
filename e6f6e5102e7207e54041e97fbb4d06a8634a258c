@@ -45,6 +45,30 @@
       "revId": "e6f6e5102e7207e54041e97fbb4d06a8634a258c",
       "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c0afdaf_c565eb4b",
+        "filename": "cloud/storage/openstack/openstack.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6196
+      },
+      "writtenOn": "2017-12-14T20:27:53Z",
+      "side": 1,
+      "message": "I would think that 0, being the default value, would let the service pick the appropriate default value, and I would expect it to be the maximum.\n\nFor the provider I\u0027m using, turns out the default limit is 10k. Indeed, running scanstore with debug logging shows 30 calls and I have nearly 300k refs.\n\nIndeed, I tried asking for a bigger number of items per page in a test, and I got this error which answers your question in the case OVH object storage.\n\n--- FAIL: TestListingWithPagination (8.10s)\n        openstack_test.go:139: I/O error: \"upspin-test-container\": Expected HTTP response code [200 204 300] when accessing [GET https://storage.waw1.cloud.ovh.net/v1/AUTH_blablablablabla/upspin-test-container?limit\u003d30000], but got 412 instead\n                Maximum limit is 10000\n\nI would not try to pick a default other than 0, maybe it would not work with another OpenStack implementation?",
+      "parentUuid": "23cd33af_72638f2a",
+      "range": {
+        "startLine": 222,
+        "startChar": 22,
+        "endLine": 222,
+        "endChar": 24
+      },
+      "revId": "e6f6e5102e7207e54041e97fbb4d06a8634a258c",
+      "serverId": "0759ed4b-3fdc-34dc-866b-f2e708168c03",
+      "unresolved": true
     }
   ]
 }
